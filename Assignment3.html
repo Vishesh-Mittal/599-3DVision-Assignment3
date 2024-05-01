@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Reconstruction Project Report</title>
+    <script type="importmap">
+            {
+                "imports": {
+                    "three": "https://unpkg.com/three@0.147.0/build/three.module.js",
+                    "three/addons/": "https://unpkg.com/three@0.147.0/examples/jsm/"
+                }
+            }
+        </script>
+    <style>
+        body {
+            margin: 25px;
+            font-family: Arial, sans-serif;
+        }
+
+        canvas {
+            display: block;
+        }
+
+        .content {
+            margin: 20px;
+        }
+
+        h1,
+        h2 {
+            color: #333;
+        }
+
+        p {
+            color: #2d2c2c;
+        }
+
+        video {
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <h1>Project Overview</h1>
+        <p>
+            This project is part of an advanced study in computer vision and photogrammetry, focusing on the training
+            and
+            implementation of Neural Radiance Fields (NeRF) and 3D Gaussian Splatting (3DGS).
+        </p>
+
+        <h2>Algorithms Used</h2>
+        <p>
+            The core of this project revolves around two cutting-edge technologies: NeRF and 3D Gaussian Splatting. NeRF
+            represents a novel approach to scene reconstruction that models the volumetric scene functionally using a
+            neural network. This network learns to map spatial coordinates and viewing directions to RGB colors and
+            density, which are used to synthesize images via differentiable rendering from novel viewpoints.
+        </p>
+        <p>
+            On the other hand, 3D Gaussian Splatting simplifies the rendering process by treating each point in a point
+            cloud as a Gaussian, projecting these points onto a 2D plane. This approach allows for efficient rendering
+            from new perspectives, making it particularly suitable for interactive applications. This technique's
+            primary challenge lies in managing the density of points to avoid oversaturation on the 2D plane while
+            maintaining enough detail in sparser regions.
+        </p>
+
+
+        <p></p>
+        <h2>Results and Comparison</h2>
+        <p>
+            PSNR (Peak Signal-to-Noise Ratio): The PSNR came out to be 34.44 dB with a standard deviation of about 3.01 dB. This is pretty good as it shows that the model reconstructs images well, maintaining a decent level of detail. Generally, a PSNR above 30 dB is considered to be good, and mine sits comfortably above this, showing a solid reconstruction performance.
+        </p>
+        <p>
+            SSIM (Structural Similarity Index Measure): I got a SSIM value of 0.971 with a standard deviation of 0.017. This means the structural information of the reconstructed images closely matches the original images. Since SSIM values range between 0 and 1, and closer to 1 indicates better performance, 0.971 suggests a high degree of similarity, which is excellent.
+        </p>
+        <p>
+            LPIPS (Learned Perceptual Image Patch Similarity): My model achieved an LPIPS score of 0.031 with a standard deviation of 0.011. LPIPS measures perceptual similarity, and lower scores mean the reconstructed image is perceptually closer to the original. A score around 0.03 indicates that perceptually, the images are very similar, which is a great outcome.
+        </p>
+        <p>
+            Performance Metrics: The model processed about 7,799,204.5 rays per second, with a standard deviation of 1,790,700. It also managed to achieve an average of 60.53 frames per second, though with a standard deviation of 13.90 fps. These figures indicate that the model is not just effective in reconstructing high-quality images, but it's also efficient, managing a high throughput of rays and maintaining a smooth frame rate which is crucial for any real-time application.
+        </p>
+
+        <h2>Visualizations</h2>
+        
+        <p>Below, video generated using ns-render command is shown, 3DGS
+            systems can be compared directly with those from COLMAP. This hands-on visual component allows for an
+            immersive examination of the nuances in each
+            reconstruction
+            technique.</p>
+    </div>
+    <section>
+        <video id="video-original" width="640" height="480" controls>
+            <source src="flowers.mov" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <video id="video-generated" width="640" height="480" controls>
+            <source src="3DGS-Flowers.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <div id="container"></div>ss 
+
+    </section>
+    <script type="module" src="assignment3.js"></script>
+    <!-- Assuming your Three.js code is in js/assignment3.js -->
+
+</body>
+
+</html>
